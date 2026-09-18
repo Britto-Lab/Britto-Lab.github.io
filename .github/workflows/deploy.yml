@@ -27,6 +27,8 @@ jobs:
 
       - name: Install, build, and upload the site
         uses: withastro/action@v3
+        with:
+          node-version: 22
         # No extra config needed — this action detects Astro automatically,
         # runs `npm install` and `npm run build`, and prepares the output.
 
