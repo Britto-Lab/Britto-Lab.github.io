@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Runs automatically every time you push to the main branch
+  push:
+    branches: [main]
+  # Lets you also trigger a deploy manually from the Actions tab
+  workflow_dispatch:
+
+# Allow this workflow to write to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only allow one deployment at a time, skip queued runs in favor of the latest
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install, build, and upload the site
+        uses: withastro/action@v3
+        # No extra config needed — this action detects Astro automatically,
+        # runs `npm install` and `npm run build`, and prepares the output.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const openings = (await getCollection('join')).sort((a, b) => a.data.order - b.data.order);
+const openOnly = openings.filter(o => o.data.open);
+const rendered = await Promise.all(openOnly.map(o => render(o)));
+---
+<Base title="Join Us">
+  <section class="section join-hero" style="position:relative; overflow:hidden;">
+    <div class="decor-shapes decor-shapes--single"></div>
+    <div class="container" style="position:relative; z-index:1;">
+      <h1>Join Us</h1>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container join-list">
+      {openOnly.length > 0 ? openOnly.map((item, i) => { const { Content } = rendered[i]; return (
+        <article class="join-card">
+          <div class="join-card__meta">
+            <span class="join-status join-status--open">Open</span>
+            <span class="muted">{item.data.role_type}</span>
+          </div>
+          <h3>{item.data.title}</h3>
+          <div class="join-card__content"><Content /></div>
+        </article>
+      ); }) : (
+        <p class="join-empty">There are no specific openings listed right now — but we're always happy to hear from motivated students and researchers. Get in touch below and tell us a bit about yourself.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container join-contact">
+      <div>
+        <h2>How to apply</h2>
+        <p class="muted" style="max-width:60ch;">
+          Send a CV, a brief statement of research interest, and contact details of two referees to the email below.
+        </p>
+        <a class="btn btn--solid" href="mailto:sandanaraj.britto@iiserpune.ac.in">Email the Lab</a>
+      </div>
+      <img src="/images/hero/campus.jpg" alt="IISER Pune campus" class="join-contact__image" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .join-list { display: flex; flex-direction: column; gap: 24px; max-width: 80ch; }
+  .join-empty {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--color-navy);
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .join-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+  }
+  .join-card__meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .join-status {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--color-bg-alt);
+    color: var(--color-muted);
+  }
+  .join-status--open { background: rgba(18,181,166,0.14); color: var(--color-teal); }
+  .join-card__content :global(p) { max-width: 65ch; margin: 0; }
+
+  .join-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .join-contact__image { border-radius: var(--radius); width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+
+  @media (max-width: 780px) {
+    .join-contact { grid-template-columns: 1fr; }
+  }
+</style>

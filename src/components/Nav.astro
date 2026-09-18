@@ -1,0 +1,336 @@
+---
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
+const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.data.order - b.data.order);
+const promotedIds = ['translational-research', 'academia-industry', 'academic-entrepreneurship'];
+const promoted = promotedIds.map(id => highlights.find(h => h.id === id)).filter(Boolean);
+const dropdownRemainder = highlights.filter(h => !promotedIds.includes(h.id));
+
+const primaryLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/pi', label: 'PI' },
+  {
+    href: '/research', label: 'Research', dropdown: true,
+    submenu: dropdownRemainder.map(h => ({ href: `/research-highlights/${h.id}`, label: h.data.title })),
+    activeMatch: (path: string) => path === '/research' || path.startsWith('/research-highlights'),
+  },
+  {
+    href: '/team', label: 'Team', dropdown: true,
+    submenu: [{ href: '/team#alumni', label: 'Alumni' }],
+    activeMatch: (path: string) => path === '/team',
+  },
+  { href: '/teaching', label: 'Teaching' },
+  { href: '/collaborations-funding', label: 'Funding & Collaboration' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/news', label: 'News' },
+  { href: '/join-us', label: 'Join Us' },
+];
+
+const secondaryLinks = promoted.map(h => ({ href: `/research-highlights/${h!.id}`, label: h!.data.title }));
+
+const currentPath = Astro.url.pathname;
+
+function renderLink(link: any) {
+  return link;
+}
+---
+
+<header class:list={["site-nav", { "site-nav--transparent": transparent }]} id="site-nav">
+  <div class="site-nav__row site-nav__row--primary">
+    <div class="container site-nav__inner">
+      <a href="/" class="site-nav__brand">
+        <img src="/images/logos/lab-logo-small.png" alt="Britto Lab logo" class="site-nav__logo" />
+        BRITTO LAB
+      </a>
+      <button class="site-nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav__links" id="nav-links">
+        {primaryLinks.map(link => (
+          link.dropdown ? (
+            <div class="site-nav__item site-nav__item--dropdown">
+              <a
+                href={link.href}
+                class:list={["site-nav__link", { "is-active": link.activeMatch ? link.activeMatch(currentPath) : currentPath === link.href }]}
+              >{link.label}</a>
+              <div class="site-nav__submenu">
+                {link.submenu?.map((item: any) => (
+                  <a href={item.href} class="site-nav__subitem">{item.label}</a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              class:list={["site-nav__link", { "is-active": currentPath === link.href }]}
+            >{link.label}</a>
+          )
+        ))}
+        <div class="site-nav__mobile-secondary">
+          {secondaryLinks.map(item => (
+            <a href={item.href} class:list={["site-nav__link", { "is-active": currentPath === item.href }]}>{item.label}</a>
+          ))}
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="site-nav__row site-nav__row--secondary">
+    <div class="container site-nav__secondary-inner">
+      {secondaryLinks.map(item => (
+        <a href={item.href} class:list={["site-nav__sublink", { "is-active": currentPath === item.href }]}>{item.label}</a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.25s ease;
+  }
+  .site-nav--transparent {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .site-nav--transparent .site-nav__row--secondary {
+    background: transparent;
+  }
+  .site-nav.is-scrolled {
+    background: rgba(27, 36, 71, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(6, 14, 22, 0.28);
+  }
+  .site-nav.is-scrolled .site-nav__row--primary { padding: 14px 0 10px; }
+
+  .site-nav__row--primary {
+    padding: 26px 0 14px;
+    transition: padding 0.25s ease;
+  }
+  .site-nav__row--secondary {
+    padding: 4px 0 16px;
+  }
+
+  .site-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
+  }
+  .site-nav__secondary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    column-gap: 32px;
+    row-gap: 6px;
+  }
+
+  .site-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    color: var(--color-white);
+    flex-shrink: 0;
+    transition: color 0.25s ease;
+  }
+  .site-nav__brand:hover { color: var(--color-mint); }
+  .site-nav__logo {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-white);
+  }
+
+  .site-nav__links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    column-gap: 22px;
+    row-gap: 10px;
+  }
+  .site-nav__mobile-secondary { display: none; }
+
+  .site-nav__item--dropdown {
+    position: relative;
+  }
+
+  .site-nav__link {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    color: rgba(255,255,255,0.86);
+    position: relative;
+    padding: 6px 0;
+    white-space: nowrap;
+    transition: color 0.25s ease;
+  }
+  .site-nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    background: var(--color-mint);
+    transition: right 0.25s ease;
+  }
+  .site-nav__link:hover { color: var(--color-white); }
+  .site-nav__link:hover::after { right: 0; }
+  .site-nav__link.is-active {
+    color: var(--color-white);
+  }
+  .site-nav__link.is-active::after { right: 0; }
+
+  .site-nav__sublink {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.72);
+    white-space: nowrap;
+    transition: color 0.25s ease;
+  }
+  .site-nav__sublink:hover,
+  .site-nav__sublink.is-active { color: var(--color-mint); }
+
+  .site-nav__submenu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 10px;
+    min-width: 240px;
+    box-shadow: 0 16px 36px rgba(6, 14, 22, 0.28);
+    z-index: 50;
+  }
+  .site-nav__item--dropdown:hover .site-nav__submenu,
+  .site-nav__item--dropdown:focus-within .site-nav__submenu {
+    display: block;
+  }
+  .site-nav__item--dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 16px;
+  }
+  .site-nav__subitem {
+    display: block;
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--color-navy) !important;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .site-nav__subitem:hover {
+    background: var(--color-bg-alt);
+    color: var(--color-teal) !important;
+  }
+
+  .site-nav__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .site-nav__toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--color-white);
+  }
+
+  @media (max-width: 1180px) {
+    .site-nav__row--secondary { display: none; }
+    .site-nav__mobile-secondary { display: block; }
+    .site-nav__toggle { display: flex; }
+    .site-nav__links {
+      position: fixed;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(27, 36, 71, 0.97);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px 24px 24px;
+      max-height: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      transition: max-height 0.3s ease;
+    }
+    .site-nav__links.is-open { max-height: 80vh; }
+    .site-nav__link {
+      color: rgba(255,255,255,0.9) !important;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: block;
+    }
+    .site-nav__link::after { display: none; }
+
+    .site-nav__item--dropdown { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .site-nav__item--dropdown .site-nav__link { border-bottom: none; }
+    .site-nav__submenu {
+      display: block;
+      position: static;
+      transform: none;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0 0 12px 14px;
+      min-width: 0;
+    }
+    .site-nav__subitem { padding: 9px 0; color: rgba(255,255,255,0.75) !important; }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+
+  const onScroll = () => {
+    if (!nav) return;
+    if (window.scrollY > 40) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const news = (await getCollection('news')).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const rendered = await Promise.all(news.map(n => render(n)));
+
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+<Base title="News">
+  <section class="section">
+    <div class="container">
+      <h1>News</h1>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container news-archive">
+      {news.length === 0 ? (
+        <p class="news-empty">Big things are brewing in the lab — check back soon for updates.</p>
+      ) : news.map((item, i) => { const { Content } = rendered[i]; return (
+        <article class="news-item">
+          {item.data.image && <img src={item.data.image} alt={item.data.title} class="news-item__image" />}
+          <div class="news-item__body">
+            <div class="news-item__meta">
+              <span class="news-item__category">{item.data.category}</span>
+              <span class="muted">{formatDate(item.data.date)}</span>
+            </div>
+            <h3>{item.data.title}</h3>
+            <div class="news-item__content"><Content /></div>
+            {item.data.external_url && <a class="text-link" href={item.data.external_url} target="_blank" rel="noopener">Read more →</a>}
+          </div>
+        </article>
+      ); })}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .news-empty {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--color-navy);
+    max-width: 50ch;
+  }
+  .news-archive { display: flex; flex-direction: column; gap: 0; max-width: 80ch; }
+  .news-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .news-item:first-child { padding-top: 0; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item__image { width: 160px; height: 110px; object-fit: cover; border-radius: 3px; background: var(--color-bg-alt); }
+  .news-item__meta { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; font-size: 0.82rem; }
+  .news-item__category {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+  .news-item h3 { margin-bottom: 6px; }
+  .news-item__content :global(p) { margin: 0; }
+
+  @media (max-width: 600px) {
+    .news-item { grid-template-columns: 1fr; }
+    .news-item__image { width: 100%; height: 160px; }
+  }
+</style>

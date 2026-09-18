@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const categoryOrder = ['PhD Student', 'Project Assistant', 'Semester Project Intern'] as const;
+
+const members = (await getCollection('team'))
+  .filter(m => m.data.active)
+  .sort((a, b) => {
+    const catDiff = categoryOrder.indexOf(a.data.category) - categoryOrder.indexOf(b.data.category);
+    if (catDiff !== 0) return catDiff;
+    return a.data.order - b.data.order;
+  });
+const renderResults = await Promise.all(members.map(m => render(m)));
+
+const alumni = (await getCollection('alumni')).sort((a, b) => a.data.order - b.data.order);
+const alumniCategories = ['Postdoc', 'PhD', 'Masters', 'Undergraduate', 'Research Associate'] as const;
+---
+<Base title="Team">
+  <section class="section">
+    <div class="container">
+      <h1>Team</h1>
+      <p class="muted" style="max-width:60ch;">The people behind the lab's research.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="team-list">
+        {members.map((member, i) => {
+          const { Content } = renderResults[i];
+          return (
+            <article class="team-member">
+              <img src={member.data.photo} alt={member.data.name} class="team-member__photo" />
+              <div class="team-member__info">
+                <span class:list={["team-member__category", `team-member__category--${member.data.category.replace(/\s+/g, '-').toLowerCase()}`]}>{member.data.category}</span>
+                <h3>{member.data.email ? <a href={`mailto:${member.data.email}`} class="team-member__name-link">{member.data.name}</a> : member.data.name}</h3>
+                {member.data.designation && <p class="team-member__role">{member.data.designation}</p>}
+                <div class="team-member__bio"><Content /></div>
+                {(member.data.google_scholar || member.data.linkedin) && (
+                  <div class="team-member__links">
+                    {member.data.google_scholar && <a href={member.data.google_scholar} class="text-link" target="_blank">Scholar</a>}
+                    {member.data.linkedin && <a href={member.data.linkedin} class="text-link" target="_blank">LinkedIn</a>}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="alumni">
+    <div class="container">
+      <div class="pipeline-rule"><span></span></div>
+      <span class="eyebrow">Alumni</span>
+      <h2>Past Members</h2>
+
+      {alumniCategories.map(cat => {
+        const items = alumni.filter(a => a.data.category === cat);
+        if (items.length === 0) return null;
+        return (
+          <div class="alumni-group">
+            <h4 class="alumni-group__title">{cat}</h4>
+            <ul class="alumni-list">
+              {items.map(a => (
+                <li><strong>{a.data.name}</strong> — <span class="muted">{a.data.info}</span></li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .team-member {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 36px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .team-list .team-member:first-child { padding-top: 0; }
+  .team-list .team-member:last-child { border-bottom: none; padding-bottom: 0; }
+  .team-member__photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: var(--color-bg-alt);
+    align-self: start;
+  }
+  .team-member__category {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    background: var(--color-bg-tint);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .team-member__category--project-assistant {
+    color: var(--color-coral);
+    background: var(--color-bg-warm);
+  }
+  .team-member__category--semester-project-intern {
+    color: var(--color-blue);
+    background: var(--color-bg-alt);
+  }
+  .team-member h3 { margin-bottom: 2px; font-size: 1.25rem; }
+  .team-member__name-link { color: var(--color-navy); }
+  .team-member__name-link:hover { color: var(--color-teal); }
+  .team-member__role { color: var(--color-blue); font-weight: 500; margin-bottom: 10px; font-size: 0.95rem; }
+  .team-member__bio :global(p) { max-width: 75ch; font-size: 0.96rem; }
+  .team-member__links { display: flex; gap: 16px; margin-top: 8px; }
+
+  .alumni-group { margin-bottom: 32px; }
+  .alumni-group:last-child { margin-bottom: 0; }
+  .alumni-group__title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-teal);
+    margin-bottom: 12px;
+  }
+  .alumni-list { list-style: none; padding: 0; margin: 0; }
+  .alumni-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+  }
+  .alumni-list li:last-child { border-bottom: none; }
+
+  @media (max-width: 640px) {
+    .team-member { grid-template-columns: 1fr; text-align: center; }
+    .team-member__photo { margin: 0 auto; }
+    .team-member__links { justify-content: center; }
+  }
+</style>

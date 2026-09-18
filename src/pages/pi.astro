@@ -1,0 +1,174 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const piEntries = await getCollection('pi');
+const piEntry = piEntries[0];
+const { Content } = await render(piEntry);
+const d = piEntry.data;
+---
+<Base title="Principal Investigator">
+  <section class="section pi-hero" style="position:relative; overflow:hidden;">
+    <div class="decor-shapes decor-shapes--single"></div>
+    <div class="container pi-hero__inner" style="position:relative; z-index:1;">
+      <img class="pi-hero__photo" src={d.photo} alt={d.name} />
+      <div>
+        <span class="eyebrow">Principal Investigator</span>
+        <h1>{d.name}</h1>
+        <p class="pi-hero__role">{d.designation}</p>
+        <div class="pi-hero__links">
+          {d.email && <a href={`mailto:${d.email}`} class="text-link">Email</a>}
+          {d.google_scholar && <a href={d.google_scholar} class="text-link" target="_blank">Google Scholar</a>}
+          {d.orcid && <a href={d.orcid} class="text-link" target="_blank">ORCID</a>}
+          {d.linkedin && <a href={d.linkedin} class="text-link" target="_blank">{d.linkedin}</a>}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container pi-content">
+      <Content />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <h2>Education</h2>
+        <ul class="pi-list">
+          {d.education.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>Employment</h2>
+        <ul class="pi-list">
+          {d.employment.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {d.other_positions.length > 0 && (
+    <section class="section section--tint">
+      <div class="container two-col">
+        <div>
+          <h2>Other Positions</h2>
+          <ul class="pi-list">
+            {d.other_positions.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>Awards & Distinctions</h2>
+          <ul class="pi-list">
+            {d.awards.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--alt">
+    <div class="container">
+      <span class="eyebrow">Details</span>
+      <h2>Further Details</h2>
+      <div class="pi-accordion">
+        {d.invited_presentations.length > 0 && (
+          <details class="pi-accordion__item">
+            <summary>Invited Presentations at National and International Level</summary>
+            <ul class="pi-list pi-list--wide">
+              {d.invited_presentations.map(item => <li>{item}</li>)}
+            </ul>
+          </details>
+        )}
+        {d.service_activities.length > 0 && (
+          <details class="pi-accordion__item">
+            <summary>Service and Activities Outside IISER-Pune</summary>
+            <ul class="pi-list pi-list--wide">
+              {d.service_activities.map(item => <li>{item}</li>)}
+            </ul>
+          </details>
+        )}
+        {d.international_meetings_posters.length > 0 && (
+          <details class="pi-accordion__item">
+            <summary>International Meetings &amp; Posters – Prior to IISER-Pune</summary>
+            <ul class="pi-list pi-list--wide">
+              {d.international_meetings_posters.map(item => <li>{item}</li>)}
+            </ul>
+          </details>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {d.scientific_consultant_company && (
+    <section class="section section--navy section--tight">
+      <div class="container">
+        <span class="eyebrow">Scientific Consultant</span>
+        <h2>{d.scientific_consultant_company}</h2>
+        <p style="max-width:60ch;">{d.scientific_consultant_description}</p>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .pi-hero__inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .pi-hero__photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: var(--color-bg-alt);
+  }
+  .pi-hero__role { font-size: 1.1rem; color: var(--color-blue); font-weight: 500; }
+  .pi-hero__links { display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
+
+  .pi-content :global(p) { max-width: 72ch; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .pi-list { padding-left: 1.1em; margin: 0; }
+  .pi-list li { margin-bottom: 10px; max-width: 55ch; }
+  .pi-list--wide li { max-width: 75ch; }
+
+  .pi-accordion { display: flex; flex-direction: column; gap: 12px; max-width: 85ch; }
+  .pi-accordion__item {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 4px 24px;
+  }
+  .pi-accordion__item summary {
+    cursor: pointer;
+    padding: 18px 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-navy);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pi-accordion__item summary::-webkit-details-marker { display: none; }
+  .pi-accordion__item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--color-teal);
+    font-weight: 400;
+    margin-left: 12px;
+  }
+  .pi-accordion__item[open] summary::after { content: '−'; }
+  .pi-accordion__item .pi-list { padding-bottom: 22px; }
+
+  @media (max-width: 720px) {
+    .pi-hero__inner { grid-template-columns: 1fr; text-align: center; }
+    .pi-hero__photo { margin: 0 auto; }
+    .pi-hero__links { justify-content: center; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

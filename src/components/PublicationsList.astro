@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+
+const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+const years = [...new Set(pubs.map(p => p.data.year))];
+
+function citation(p: typeof pubs[0]['data']) {
+  const parts = [p.authors.join(', ') + '.', `"${p.title}."`, p.journal + (p.volume ? `, ${p.volume}` : '') + (p.issue ? `(${p.issue})` : '') + (p.pages ? `: ${p.pages}` : '') + '.', `(${p.year}).`];
+  return parts.join(' ');
+}
+---
+<div class="pub-list-wrap">
+  {years.map(year => (
+    <div class="pub-year-group">
+      <h3 class="pub-year">{year}</h3>
+      <ol class="pub-list">
+        {pubs.filter(p => p.data.year === year).map(p => (
+          <li>
+            <p class="pub-citation">
+              {citation(p.data)}
+              {p.data.external_url && <a href={p.data.external_url} target="_blank" rel="noopener" class="pub-link">View →</a>}
+              {p.data.doi && !p.data.external_url && <a href={`https://doi.org/${p.data.doi}`} target="_blank" rel="noopener" class="pub-link">DOI →</a>}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  ))}
+</div>
+
+<style>
+  .pub-year-group { margin-bottom: 40px; }
+  .pub-year {
+    font-family: var(--font-display);
+    color: var(--color-teal);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .pub-list { list-style: decimal; padding-left: 1.3em; margin: 0; }
+  .pub-list li { margin-bottom: 16px; }
+  .pub-citation { margin: 0; max-width: 78ch; }
+  .pub-link { margin-left: 8px; font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
+</style>

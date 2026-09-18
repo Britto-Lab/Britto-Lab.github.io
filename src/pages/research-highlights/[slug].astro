@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('researchHighlights');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base title={entry.data.title}>
+  <section class="section">
+    <div class="container">
+      <a href="/research" class="text-link back-link">← Back to Research</a>
+      <span class="eyebrow">Research</span>
+      <h1>{entry.data.title}</h1>
+      <div class="highlight-content">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .back-link { display: inline-block; margin-bottom: 24px; }
+  .highlight-content { max-width: 78ch; margin-top: 20px; }
+  .highlight-content :global(ol) { padding-left: 1.5em; }
+  .highlight-content :global(li) {
+    margin-bottom: 28px;
+    padding-bottom: 26px;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    border-bottom: 1px solid var(--color-border);
+    text-align: justify;
+  }
+  .highlight-content :global(li:last-child) { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .highlight-content :global(li strong) { color: var(--color-navy); }
+  .highlight-content :global(em) { color: var(--color-teal); font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; display: block; margin: 28px 0 14px; }
+  .highlight-content :global(em:first-child) { margin-top: 0; }
+</style>

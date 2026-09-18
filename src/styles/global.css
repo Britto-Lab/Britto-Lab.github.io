@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Color — vibrant modern indigo/teal/coral palette */
+  --color-navy: #1B2447;
+  --color-navy-deep: #141B36;
+  --color-blue: #3457D5;
+  --color-teal: #12B5A6;
+  --color-mint: #5EEAD4;
+  --color-coral: #FF6B4A;
+  --color-bg: #F5F8FB;
+  --color-bg-alt: #E9F0FB;
+  --color-bg-tint: #E4FAF5;
+  --color-bg-warm: #FFF1E8;
+  --color-text: #1A1F2E;
+  --color-muted: #5B6472;
+  --color-border: #DCE4F0;
+  --color-white: #FFFFFF;
+
+  /* Type */
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Layout */
+  --max-width: 1180px;
+  --nav-height: 128px;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(27, 36, 71, 0.05) 1.4px, transparent 0);
+  background-size: 28px 28px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reusable soft blurred accent shapes — used behind hero/feature sections
+   for a modern, molecular-inspired backdrop without being distracting. */
+.decor-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.decor-shapes::before,
+.decor-shapes::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+}
+.decor-shapes::before {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(18, 181, 166, 0.24), transparent 70%);
+}
+.decor-shapes::after {
+  width: 360px;
+  height: 360px;
+  bottom: -160px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(255, 107, 74, 0.14), transparent 70%);
+}
+.decor-shapes--single::after { display: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  line-height: 1.15;
+  margin: 0 0 0.5em 0;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-weight: 800; font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-weight: 700; font-size: clamp(1.7rem, 3vw, 2.4rem); }
+h3 { font-weight: 700; font-size: 1.3rem; }
+h4 { font-weight: 600; font-size: 1.05rem; }
+
+p { margin: 0 0 1em 0; color: var(--color-text); text-align: justify; text-justify: inter-word; }
+
+a { color: var(--color-blue); text-decoration: none; }
+a:hover { color: var(--color-teal); }
+
+img { max-width: 100%; display: block; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section {
+  padding: 88px 0;
+}
+.section--tight { padding: 56px 0; }
+.section--alt { background: var(--color-bg-alt); }
+.section--tint { background: linear-gradient(180deg, var(--color-bg-tint) 0%, var(--color-bg) 100%); }
+.section--navy {
+  background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
+  color: rgba(255,255,255,0.92);
+}
+.section--navy h1, .section--navy h2, .section--navy h3, .section--navy h4 { color: var(--color-white); }
+.section--navy .eyebrow { color: var(--color-mint); }
+.section--navy p { color: rgba(255,255,255,0.78); }
+
+.muted { color: var(--color-muted); }
+
+/* Signature motif: pipeline node-rule, echoes Research -> Discovery -> Innovation -> Impact */
+.pipeline-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 40px 0;
+  color: var(--color-border);
+}
+.pipeline-rule::before,
+.pipeline-rule::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: var(--color-border);
+}
+.pipeline-rule span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  flex-shrink: 0;
+}
+
+/* Buttons / links */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 12px 22px;
+  border: 1px solid var(--color-navy);
+  border-radius: var(--radius);
+  color: var(--color-navy);
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn:hover {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.btn--solid {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.btn--solid:hover {
+  background: var(--color-teal);
+  border-color: var(--color-teal);
+  color: var(--color-white);
+}
+
+.text-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.text-link:hover { color: var(--color-teal); }
+
+@media (max-width: 860px) {
+  .section { padding: 56px 0; }
+  .container { padding: 0 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

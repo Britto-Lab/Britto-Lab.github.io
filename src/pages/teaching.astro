@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const entries = await getCollection('teaching');
+const entry = entries[0];
+const { Content } = await render(entry);
+---
+<Base title="Teaching">
+  <section class="section">
+    <div class="container">
+      <h1>Teaching</h1>
+      <div class="teaching-content">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .teaching-content { max-width: 75ch; margin-top: 24px; }
+  .teaching-content :global(ol) { padding-left: 1.2em; }
+  .teaching-content :global(li) { margin-bottom: 12px; font-size: 1.02rem; }
+</style>

@@ -1,0 +1,170 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const photos = (await getCollection('gallery')).sort((a, b) => a.data.order - b.data.order);
+const media = (await getCollection('mediaCoverage')).sort((a, b) => a.data.order - b.data.order);
+
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+---
+<Base title="Gallery">
+  <section class="section">
+    <div class="container">
+      <h1>Gallery</h1>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="gallery-grid">
+        {photos.map((p, i) => (
+          <button class="gallery-item" data-index={i} type="button">
+            <img src={p.data.image} alt={p.data.title} loading="lazy" />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt section--tight">
+    <div class="container">
+      <span class="eyebrow">In the Press</span>
+      <h2>Research Media Coverage</h2>
+      <div class="media-card">
+        <ul class="media-list">
+          {media.map(m => (
+            <li>
+              <a href={m.data.url} target="_blank" rel="noopener" class="media-list__title">{m.data.title}</a>
+              <span class="muted media-list__meta"> — {m.data.source}, {formatDate(m.data.date)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Previous">‹</button>
+    <img id="lightbox-image" src="" alt="" />
+    <p id="lightbox-caption" class="lightbox__caption"></p>
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Next">›</button>
+  </div>
+
+  <div hidden id="gallery-data">
+    {photos.map((p, i) => (
+      <div data-index={i} data-image={p.data.image} data-caption={p.data.caption ?? p.data.title}></div>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gallery-item {
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--color-bg-alt);
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 14, 22, 0.94);
+    flex-direction: column;
+    padding: 40px;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox img { max-width: 88vw; max-height: 78vh; object-fit: contain; }
+  .lightbox__caption { color: rgba(255,255,255,0.75); margin-top: 16px; font-size: 0.9rem; }
+  .lightbox__close {
+    position: absolute; top: 20px; right: 28px;
+    background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer;
+  }
+  .lightbox__nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: #fff; font-size: 2.6rem; cursor: pointer; padding: 12px;
+  }
+  .lightbox__nav--prev { left: 12px; }
+  .lightbox__nav--next { right: 12px; }
+
+  @media (max-width: 780px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+
+  .media-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 12px 32px;
+  }
+  .media-list { list-style: none; padding: 0; margin: 0; }
+  .media-list li { padding: 18px 0; border-bottom: 1px solid var(--color-border); }
+  .media-list li:last-child { border-bottom: none; }
+  .media-list__title { font-weight: 600; }
+  .media-list__meta { font-size: 0.9rem; }
+</style>
+
+<script>
+  const items = document.querySelectorAll('.gallery-item');
+  const data = Array.from(document.querySelectorAll('#gallery-data > div')).map(el => ({
+    image: el.getAttribute('data-image') ?? '',
+    caption: el.getAttribute('data-caption') ?? '',
+  }));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement | null;
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  let current = 0;
+
+  function show(index: number) {
+    current = (index + data.length) % data.length;
+    if (lightboxImage) lightboxImage.src = data[current].image;
+    if (lightboxImage) lightboxImage.alt = data[current].caption;
+    if (lightboxCaption) lightboxCaption.textContent = data[current].caption;
+  }
+
+  function open(index: number) {
+    show(index);
+    lightbox?.classList.add('is-open');
+    lightbox?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox?.classList.remove('is-open');
+    lightbox?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = Number(item.getAttribute('data-index'));
+      open(idx);
+    });
+  });
+
+  document.getElementById('lightbox-close')?.addEventListener('click', close);
+  document.getElementById('lightbox-prev')?.addEventListener('click', () => show(current - 1));
+  document.getElementById('lightbox-next')?.addEventListener('click', () => show(current + 1));
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+</script>

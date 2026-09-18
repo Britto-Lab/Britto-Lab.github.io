@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const collabs = (await getCollection('collaborations')).sort((a, b) => a.data.order - b.data.order);
+const academic = collabs.filter(c => c.data.type === 'academic');
+const industry = collabs.filter(c => c.data.type === 'industry');
+
+const funding = (await getCollection('funding')).sort((a, b) => a.data.order - b.data.order);
+const fundingResults = await Promise.all(funding.map(f => render(f)));
+const current = funding.filter(f => f.data.status === 'Current');
+const past = funding.filter(f => f.data.status === 'Past');
+---
+<Base title="Funding & Collaboration">
+  <section class="section" style="position:relative; overflow:hidden;">
+    <div class="decor-shapes decor-shapes--single"></div>
+    <div class="container" style="position:relative; z-index:1;">
+      <h1>Funding &amp; Collaboration</h1>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cf-card">
+        <h2 class="cf-card__title">Current and Past Funding (As a Principal Investigator)</h2>
+
+        {current.length > 0 && (
+          <div class="funding-group">
+            <h4 class="funding-group__title">Current</h4>
+            {current.map(f => {
+              const idx = funding.indexOf(f);
+              const { Content } = fundingResults[idx];
+              return (
+                <div class="funding-item">
+                  <p class="funding-item__title">{f.data.project_title}</p>
+                  <p class="muted funding-item__meta">{f.data.funding_agency} · {f.data.duration}{f.data.grant_number ? ` · Grant No. ${f.data.grant_number}` : ''}</p>
+                  <div class="funding-item__content"><Content /></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {past.length > 0 && (
+          <div class="funding-group">
+            <h4 class="funding-group__title">Past</h4>
+            {past.map(f => {
+              const idx = funding.indexOf(f);
+              const { Content } = fundingResults[idx];
+              return (
+                <div class="funding-item">
+                  <p class="funding-item__title">{f.data.project_title}</p>
+                  <p class="muted funding-item__meta">{f.data.funding_agency} · {f.data.duration}{f.data.grant_number ? ` · Grant No. ${f.data.grant_number}` : ''}</p>
+                  <div class="funding-item__content"><Content /></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="cf-card">
+        <h2 class="cf-card__title">Academic Collaborators</h2>
+        <ul class="cf-simple-list">
+          {academic.map(c => (
+            <li><strong>{c.data.name}</strong> — <span class="muted">{c.data.designation}, {c.data.institution}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="cf-card">
+        <h2 class="cf-card__title">Industrial Collaborators</h2>
+        <ul class="cf-simple-list">
+          {industry.map(c => (
+            <li><strong>{c.data.name}</strong> — <span class="muted">{c.data.designation ? `${c.data.designation}, ` : ''}{c.data.institution}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cf-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 28px;
+  }
+  .cf-card:last-child { margin-bottom: 0; }
+  .cf-card__title { margin-bottom: 20px; font-size: 1.3rem; }
+
+  .cf-simple-list { list-style: none; padding: 0; margin: 0; }
+  .cf-simple-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+  }
+  .cf-simple-list li:last-child { border-bottom: none; }
+
+  .funding-group { margin-top: 24px; }
+  .funding-group:first-of-type { margin-top: 0; }
+  .funding-group__title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-teal);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .funding-item { padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+  .funding-item:last-child { border-bottom: none; }
+  .funding-item__title { font-weight: 600; color: var(--color-navy); margin: 0 0 4px; }
+  .funding-item__meta { margin: 0 0 8px; font-size: 0.88rem; }
+  .funding-item__content :global(ul) { padding-left: 1.2em; margin: 0; }
+  .funding-item__content :global(li) { margin-bottom: 6px; max-width: 70ch; }
+</style>

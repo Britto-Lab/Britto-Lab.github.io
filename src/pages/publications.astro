@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PublicationsList from '../components/PublicationsList.astro';
+---
+<Base title="Publications">
+  <section class="section section--tight">
+    <div class="container">
+      <p class="muted">A record of the lab's peer-reviewed work. Links lead to the official source.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <PublicationsList />
+    </div>
+  </section>
+</Base>

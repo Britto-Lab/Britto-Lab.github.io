@@ -1,0 +1,416 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const themes = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+const renderResults = await Promise.all(themes.map(t => render(t)));
+
+const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Research">
+  <section class="section" style="position:relative; overflow:hidden;">
+    <div class="decor-shapes"></div>
+    <div class="container" style="position:relative; z-index:1;">
+      <span class="eyebrow">Research</span>
+      <h1>Deciphering the Function of "Active Proteins" in Living Systems in Real Time</h1>
+      <div class="research-intro">
+        <p>
+          Even after two decades of the complete human genome draft, we still do not know the
+          function of many proteins. The genomic, transcriptomics and standard proteomics
+          technologies have failed to provide information on the function of many proteins. This
+          is mainly attributed to the reason that the function of "active protein' is regulated
+          at multiple levels such as irreversible post-translational modification, reversible
+          interaction of active proteins with endogenous inhibitors, and targeted protein
+          degradation through proteasomes. The ABPP-MS method addresses these limitations posed
+          by major "omics" technologies and helps to decipher the function of many proteins,
+          which are involved in various human diseases. ABPP-MS has succeeded as a robust mature
+          technology over the last decade. Because of its unparalleled strength, many academic
+          laboratories and pharmaceutical/biotech industries routinely use ABPP-MS for target
+          identification, target validation, and inhibitor screening. However, the existing
+          ABPP-MS method uses fractionated proteomes from cells/tissues for downstream analysis.
+          Because of this shortcoming, cells and tissues are subjected to sample homogenization
+          and this leads to a loss of spatial information on protein activity. In addition, the
+          current ABPP-MS method cannot be used to detect the function of protein directly from
+          living systems in real-time in a longitudinal manner. To address these issues, our
+          research group initiated a research program to study the function of "active proteins"
+          with exquisite specificity in living systems in real-time with high spatio-temporal
+          resolution.
+        </p>
+        <p>
+          This grand challenge can be broadly divided into two major challenges: the first
+          challenge is the development of a highly specific imaging method that can be used to
+          follow a particular biological process at the system level with very high spatial and
+          temporal resolution and the second challenge is the delivery of chemical
+          probes/imaging agents to the target organ/tissue, in particular to the right cell type
+          and the organelle of interest in living systems. This is an important problem to be
+          addressed as the most advanced chemical probes/imaging agents do not work in living
+          animals because of sub-optimal pharmacokinetics (PK), biodistribution, and toxicity
+          profiles (Figure 1). In essence, this grand challenge consists of two important
+          research problems to be addressed i.e. (i) development of advanced non-invasive
+          specific imaging methods and (ii) development of next-generation programmable
+          sophisticated delivery systems (iii) finally integration of these two methods to yield
+          mature sophisticated biomedical technology.
+        </p>
+
+        <figure class="research-figure">
+          <img src="/images/research/fig1-convergence-technologies.png" alt="Figure 1" />
+          <figcaption class="muted">Figure 1. Integration of novel chemical biology technologies for non-invasive monitoring of a particular biological process in living subjects in real time.</figcaption>
+        </figure>
+
+        <p>
+          A living cell can be considered as the most sophisticated highly crowded micron-sized
+          reaction container encased by a semi-permeable lipid membrane. At any given time, there
+          are thousands of physical and chemical transformations that occur in a highly
+          coordinated manner. These transformations are mostly carried out by the plethora of
+          enzymes and therefore exquisite imaging of particular enzymatic activity is of utmost
+          importance. However, the challenge is development of a specific imaging method to
+          follow one such transformation in live cells in real time. Apart from this, another
+          major challenge is the translation of live cell imaging capabilities to live animal
+          imaging. Therefore, it is important to develop a specific imaging method for exquisite
+          non-invasive imaging of protein function in live cells and live animals in real time.
+          The other challenge is the delivery of chemical probes/imaging agents to the right
+          organ/organelle of a living animal. Therefore, it is important to develop safe
+          next-generation delivery systems. (Figure 2)
+        </p>
+        <p>
+          The development of synthetic methodology for the modular design of smart delivery
+          vehicles that can encapsulate a wide range of cargo is highly demanding. Although, a
+          plethora of scaffolds are available based on lipids, carbohydrates, nucleic acids,
+          peptides, and synthetic polymers. Most of them do not satisfy all the favorable
+          attributes such as modular design, easy synthesis and purification, stimuli-responsive
+          behavior, biocompatible, biodegradable, and non-immunogenic, tissue targeting ability,
+          and optimal biodistribution, pharmacokinetics, and toxicity profiles (Figure 2). In
+          contrast, naturally occurring pseudo-life forms such as viruses through evolution have
+          satisfied these stringent requirements. Viruses depend on the host system for their
+          replication and therefore they are the most evolved "nanomachines" to deliver their
+          cargo with remarkable efficiency and specificity. However, one has to keep in mind that
+          this system was perfected after a million years of experimentation through natural
+          evolution. Viruses are fascinating nanomaterials because they are made through the
+          self-assembly of DNA or RNA with viral coat proteins and most of them are highly
+          symmetric and synthesized in perfect monodisperse form. Because of these reasons, there
+          were lots of efforts to mimic these structures using custom-designed synthetic proteins
+          through computational protein design/genetic methods. Although powerful, this method
+          requires sophisticated infrastructure for high-level computation and in addition, the
+          success rate of this method is less than 10%. Most importantly, the protein
+          nanostructures made through this method lack stimuli-responsive behavior, which is an
+          important prerequisite for advanced delivery applications. Therefore, it is important
+          to develop alternative technologies for the accurate design of protein-based
+          nanoparticles through non-genetic methods.
+        </p>
+
+        <figure class="research-figure">
+          <img src="/images/research/fig2-characteristics.png" alt="Figure 2" />
+          <figcaption class="muted">Figure 2. A. Desired characteristics of advanced delivery systems. B. Desired characteristics of advanced imaging method.</figcaption>
+        </figure>
+
+        <p>
+          The vision of our laboratory is to develop enabling tools and technologies to address
+          these challenges. To achieve these goals, we initiated two independent stand-alone
+          research programs in the area of (i) Development of specific imaging methods and, (ii)
+          Development of next generation protein-based delivery system. In particular, we are
+          currently pursuing two major research programs:
+        </p>
+        <ul>
+          <li>Research Program I (RP-I): Development of specific imaging methods for the accurate detection of enzymatic activity in living systems</li>
+          <li>Research Program II (RP-II): Development of enabling chemical technologies for the design of stimuli-responsive synthetic protein nanoassemblies for targeted delivery of pharmacological/imaging agents</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section theme-section">
+    <div class="container">
+      <span class="eyebrow">Research Themes</span>
+      <div class="theme-list">
+        {themes.map((theme, i) => (
+          <button class:list={["theme-card", { "theme-card--reverse": i % 2 === 1 }]} data-theme-index={i} type="button">
+            <div class="theme-card__media">
+              <img src={theme.data.image} alt={theme.data.title} />
+            </div>
+            <div class="theme-card__body">
+              <span class="theme-card__index">{`0${i + 1}`}</span>
+              <h3>{theme.data.title}</h3>
+              <span class="theme-card__cta">Explore this theme →</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt">
+    <div class="container">
+      <div class="pipeline-rule"><span></span></div>
+      <span class="eyebrow">Explore Further</span>
+      <div class="highlight-links">
+        {highlights.map(h => (
+          <a href={`/research-highlights/${h.id}`} class="highlight-link">
+            <span>{h.data.title}</span>
+            <span class="highlight-link__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="theme-dialog" id="theme-dialog" aria-hidden="true">
+    <div class="theme-dialog__backdrop" id="theme-dialog-backdrop"></div>
+    <div class="theme-dialog__panel" role="dialog" aria-modal="true" aria-labelledby="theme-dialog-title">
+      <button class="theme-dialog__close" id="theme-dialog-close" aria-label="Close">×</button>
+      <div id="theme-dialog-body"></div>
+    </div>
+  </div>
+
+  <div hidden id="theme-data-store">
+    {themes.map((theme, i) => {
+      const { Content } = renderResults[i];
+      return (
+        <div data-theme-content={i} data-title={theme.data.title} data-image={theme.data.image}>
+          <Content />
+        </div>
+      );
+    })}
+  </div>
+</Base>
+
+<style>
+  .research-intro { max-width: 78ch; margin-left: auto; margin-right: auto; font-size: 1.05rem; margin-bottom: 36px; }
+  .research-intro p { margin-bottom: 1.3em; }
+  .research-intro ul { padding-left: 1.3em; text-align: left; }
+  .research-intro li { margin-bottom: 10px; }
+
+  .research-figure { margin: 32px auto; max-width: 78ch; text-align: center; }
+  .research-figure img {
+    width: 100%;
+    border-radius: var(--radius);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 16px;
+  }
+  .research-figure figcaption {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .highlight-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 85ch;
+  }
+  .highlight-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--color-navy);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .highlight-link:hover {
+    border-color: var(--color-teal);
+    background: var(--color-bg-alt);
+    color: var(--color-teal);
+  }
+  .highlight-link__arrow { color: var(--color-teal); font-weight: 400; }
+
+  .theme-section { position: relative; }
+
+  .theme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .theme-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: 480px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: var(--color-white);
+    text-align: left;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .theme-card--reverse { grid-template-columns: 1fr 1fr; }
+  .theme-card--reverse .theme-card__media { order: 2; }
+  .theme-card--reverse .theme-card__body { order: 1; }
+  .theme-card:hover {
+    border-color: var(--color-teal);
+    box-shadow: 0 26px 60px rgba(27, 36, 71, 0.16);
+    transform: translateY(-2px);
+  }
+  .theme-card__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-navy);
+  }
+  .theme-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .theme-card:hover .theme-card__media img { transform: scale(1.08); }
+
+  .theme-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    padding: 64px 72px;
+  }
+  .theme-card__index {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 3.2rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-bg-alt);
+    -webkit-text-stroke: 1.5px var(--color-teal);
+  }
+  .theme-card__body h3 {
+    margin: 0;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    line-height: 1.2;
+  }
+  .theme-card__cta {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--color-navy);
+    transition: color 0.25s ease;
+  }
+  .theme-card:hover .theme-card__cta { color: var(--color-teal); }
+
+  @media (max-width: 900px) {
+    .theme-card, .theme-card--reverse { grid-template-columns: 1fr; min-height: 0; }
+    .theme-card--reverse .theme-card__media { order: 0; }
+    .theme-card--reverse .theme-card__body { order: 0; }
+    .theme-card__media { aspect-ratio: 16 / 9; }
+    .theme-card__body { padding: 40px 32px; }
+  }
+
+  .theme-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .theme-dialog.is-open { display: flex; }
+  .theme-dialog__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 18, 28, 0.65);
+  }
+  .theme-dialog__panel {
+    position: relative;
+    background: var(--color-white);
+    max-width: 1180px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 6px;
+    padding: 72px 80px;
+    box-shadow: 0 30px 80px rgba(10, 18, 28, 0.35);
+  }
+  .theme-dialog__close {
+    position: absolute;
+    top: 22px;
+    right: 28px;
+    background: var(--color-bg-alt);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-muted);
+  }
+  .theme-dialog__close:hover { color: var(--color-navy); background: var(--color-border); }
+
+  #theme-dialog-body { max-width: 78ch; margin: 0 auto; }
+  #theme-dialog-body img {
+    width: 100%;
+    border-radius: 3px;
+    margin: 18px 0 24px;
+  }
+  #theme-dialog-body figure {
+    margin: 30px auto;
+    text-align: center;
+  }
+  #theme-dialog-body figure img {
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    padding: 18px;
+    margin: 0 0 10px;
+  }
+  #theme-dialog-body figcaption {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    text-align: center;
+  }
+  #theme-dialog-body h2 { font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-teal); margin-top: 1.6em; }
+  #theme-dialog-body h3 { font-size: 1.05rem; color: var(--color-navy); margin-top: 1.4em; }
+  #theme-dialog-body ul, #theme-dialog-body ol { padding-left: 1.2em; }
+  #theme-dialog-body li { margin-bottom: 8px; }
+  #theme-dialog-body p { margin-bottom: 1em; }
+
+  @media (max-width: 900px) {
+    .highlight-links { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 800px) {
+    .theme-dialog { padding: 16px; }
+    .theme-dialog__panel { padding: 40px 28px; }
+  }
+</style>
+
+<script>
+  const dialog = document.getElementById('theme-dialog');
+  const body = document.getElementById('theme-dialog-body');
+  const cards = document.querySelectorAll('.theme-card');
+
+  function openDialog(index: string) {
+    const source = document.querySelector(`[data-theme-content="${index}"]`);
+    if (!source || !body || !dialog) return;
+    const title = source.getAttribute('data-title') ?? '';
+    body.innerHTML = `<h2 id="theme-dialog-title" style="text-transform:none;color:var(--color-navy);letter-spacing:normal;font-size:clamp(1.4rem,3vw,1.9rem);">${title}</h2>` + source.innerHTML;
+    dialog.classList.add('is-open');
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDialog() {
+    dialog?.classList.remove('is-open');
+    dialog?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = card.getAttribute('data-theme-index');
+      if (idx !== null) openDialog(idx);
+    });
+  });
+
+  document.getElementById('theme-dialog-close')?.addEventListener('click', closeDialog);
+  document.getElementById('theme-dialog-backdrop')?.addEventListener('click', closeDialog);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDialog();
+  });
+</script>

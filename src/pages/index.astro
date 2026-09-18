@@ -1,0 +1,228 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allNews = (await getCollection('news')).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const latestNews = allNews.slice(0, 4);
+---
+<Base title="Home" transparentNav={true}>
+  <section class="hero">
+    <video class="hero__video" autoplay muted loop playsinline poster="/video/hero_facilities_poster.jpg">
+      <source src="/video/hero_facilities.webm" type="video/webm" />
+      <source src="/video/hero_facilities.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1>BRITTO LAB</h1>
+      <p class="hero__statement">We are dedicated to engineering dynamic protein nanomaterials for next-generation therapeutics, diagnostics, and vaccines.</p>
+    </div>
+    <a href="#main-content" class="hero__scroll" aria-label="Scroll down">↓</a>
+  </section>
+
+  <section class="section section--tint" id="main-content" style="position:relative; overflow:hidden;">
+    <div class="decor-shapes decor-shapes--single"></div>
+    <div class="container home-grid" style={`position:relative; z-index:1; ${latestNews.length === 0 ? 'grid-template-columns: 1fr;' : ''}`}>
+      <div class:list={["home-main", { "home-main--full": latestNews.length === 0 }]}>
+        <span class="eyebrow">Welcome</span>
+        <h2>Designing Protein Nanomaterials for Real-World Impact</h2>
+        <p>
+          The field of biomolecular nanotechnology has contributed significantly to the design
+          of molecular scaffolds based on DNA, RNA, peptides, and carbohydrates. Among these,
+          protein nanotechnology remains relatively new and highly challenging to practice.
+          Rapid advances in synthetic gene synthesis and computational protein design have
+          enabled elaborate protein structures to be built with high accuracy — but this
+          approach often yields protein assemblies that are static, in sharp contrast to
+          natural protein assemblies, which are highly dynamic.
+        </p>
+        <p>
+          Chemical strategies, on the other hand, offer enormous opportunities to design protein
+          super-structures capable of dynamic behavior, though most chemical methods have not
+          matured into reliable technologies — often yielding polydisperse samples that lack
+          high-resolution structural information and are restricted to a handful of proteins.
+        </p>
+
+        <p>
+          To address these challenges, the Britto Lab initiated a research program on the
+          development of enabling biomedical technologies for the accurate design of protein
+          nanomaterials — and on using custom-designed protein nanomaterials for healthcare
+          applications including therapeutics, diagnostics, and vaccines.
+        </p>
+        <p>
+          The lab's platform chemistries (MAPLabTech, SAPLabTech, STAPLabTech, and AbRGT) are
+          developed in close partnership with academic collaborators and industry, translating
+          fundamental chemical biology into real-world nanomedicine — from antibody-drug
+          nanotherapeutics to nano-vaccines for dengue and malaria.
+        </p>
+
+        <a class="btn" href="/research">Explore Our Research</a>
+      </div>
+
+      {latestNews.length > 0 && (
+        <aside class="home-news">
+          <h4 class="home-news__title">Latest News</h4>
+          <ul class="home-news__list">
+            {latestNews.map(item => (
+              <li>
+                <span class="home-news__category">{item.data.category}</span>
+                <a href="/news" class="home-news__item-title">{item.data.title}</a>
+              </li>
+            ))}
+          </ul>
+          <a class="text-link" href="/news">View All →</a>
+        </aside>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #1B2447 0%, #22306B 55%, #14213D 100%);
+    overflow: hidden;
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(18,181,166,0.16), transparent 55%),
+      linear-gradient(180deg, rgba(10,20,32,0.38) 0%, rgba(10,20,32,0.22) 45%, rgba(10,20,32,0.48) 100%);
+  }
+  .hero__overlay::before,
+  .hero__overlay::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  .hero__overlay::before {
+    width: 560px;
+    height: 560px;
+    top: -180px;
+    right: -120px;
+  }
+  .hero__overlay::after {
+    width: 340px;
+    height: 340px;
+    bottom: -140px;
+    left: 6%;
+    border-color: rgba(255, 107, 74, 0.20);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-white);
+    padding: 0 24px;
+  }
+  .hero__content h1 {
+    color: var(--color-white);
+    letter-spacing: 0.02em;
+    text-shadow: 0 4px 28px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .hero__statement {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255,255,255,0.94);
+    max-width: 560px;
+    margin: 18px auto 0;
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.55);
+  }
+
+  .hero__scroll {
+    position: absolute;
+    z-index: 2;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 1.4rem;
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .home-main p { max-width: 60ch; }
+  .home-main--full { max-width: 75ch; }
+  .home-main--full p { max-width: 75ch; }
+  .home-main code {
+    background: var(--color-bg-alt);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+
+  .home-news {
+    position: sticky;
+    top: calc(var(--nav-height) + 32px);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+  }
+  .home-news__title {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: 18px;
+  }
+  .home-news__list {
+    list-style: none;
+    margin: 0 0 18px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .home-news__list li {
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .home-news__list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .home-news__category {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: 4px;
+  }
+  .home-news__item-title {
+    color: var(--color-navy);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .home-grid { grid-template-columns: 1fr; gap: 40px; }
+    .home-news { position: static; }
+  }
+</style>
