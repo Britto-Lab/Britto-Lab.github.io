@@ -21,13 +21,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+      env: 
+    NODE_VERSION: 22
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with: node-version: 22
         
       - name: Install, build, and upload the site
         uses: withastro/action@v3
