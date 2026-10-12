@@ -20,11 +20,15 @@ const alumniCategories = ['Postdoc', 'PhD', 'Masters', 'Undergraduate', 'Researc
   <section class="section">
     <div class="container">
       <h1>Team</h1>
-      <p class="muted" style="max-width:60ch;">The people behind the lab's research.</p>
+
+      <div class="page-tabs" role="tablist">
+        <button class="page-tab is-active" data-tab-target="current" type="button">Current Members</button>
+        <button class="page-tab" data-tab-target="alumni-panel" type="button">Alumni</button>
+      </div>
     </div>
   </section>
 
-  <section class="section section--tight">
+  <section class="section section--tight page-panel" data-panel="current">
     <div class="container">
       <div class="team-list">
         {members.map((member, i) => {
@@ -51,10 +55,9 @@ const alumniCategories = ['Postdoc', 'PhD', 'Masters', 'Undergraduate', 'Researc
     </div>
   </section>
 
-  <section class="section section--tint" id="alumni">
+  <section class="section section--tint page-panel" data-panel="alumni-panel" id="alumni" style="display:none;">
     <div class="container">
       <div class="pipeline-rule"><span></span></div>
-      <span class="eyebrow">Alumni</span>
       <h2>Past Members</h2>
 
       {alumniCategories.map(cat => {
@@ -149,3 +152,26 @@ const alumniCategories = ['Postdoc', 'PhD', 'Masters', 'Undergraduate', 'Researc
     .team-member__links { justify-content: center; }
   }
 </style>
+
+<script>
+  const tabs = document.querySelectorAll('.page-tab');
+  const panels = document.querySelectorAll('.page-panel');
+
+  function activate(target: string) {
+    tabs.forEach(t => t.classList.toggle('is-active', t.getAttribute('data-tab-target') === target));
+    panels.forEach(p => {
+      (p as HTMLElement).style.display = p.getAttribute('data-panel') === target ? '' : 'none';
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab-target');
+      if (target) activate(target);
+    });
+  });
+
+  if (window.location.hash === '#alumni') {
+    activate('alumni-panel');
+  }
+</script>

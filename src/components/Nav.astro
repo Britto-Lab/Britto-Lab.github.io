@@ -16,12 +16,12 @@ const primaryLinks = [
   { href: '/pi', label: 'PI' },
   {
     href: '/research', label: 'Research', dropdown: true,
-    submenu: dropdownRemainder.map(h => ({ href: `/research-highlights/${h.id}`, label: h.data.title })),
+    submenu: [{ href: '/research', label: 'Research' }, ...dropdownRemainder.map(h => ({ href: `/research-highlights/${h.id}`, label: h.data.title }))],
     activeMatch: (path: string) => path === '/research' || path.startsWith('/research-highlights'),
   },
   {
     href: '/team', label: 'Team', dropdown: true,
-    submenu: [{ href: '/team#alumni', label: 'Alumni' }],
+    submenu: [{ href: '/team', label: 'Current' }, { href: '/team#alumni', label: 'Alumni' }],
     activeMatch: (path: string) => path === '/team',
   },
   { href: '/teaching', label: 'Teaching' },
@@ -117,11 +117,11 @@ function renderLink(link: any) {
   .site-nav.is-scrolled .site-nav__row--primary { padding: 14px 0 10px; }
 
   .site-nav__row--primary {
-    padding: 26px 0 14px;
+    padding: 16px 0 10px;
     transition: padding 0.25s ease;
   }
   .site-nav__row--secondary {
-    padding: 4px 0 16px;
+    padding: 2px 0 12px;
   }
 
   .site-nav__inner {
@@ -146,7 +146,7 @@ function renderLink(link: any) {
     gap: 14px;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.72rem;
     letter-spacing: 0.03em;
     color: var(--color-white);
     flex-shrink: 0;
@@ -154,8 +154,8 @@ function renderLink(link: any) {
   }
   .site-nav__brand:hover { color: var(--color-mint); }
   .site-nav__logo {
-    width: 46px;
-    height: 46px;
+    width: 53px;
+    height: 53px;
     object-fit: contain;
     border-radius: 50%;
     flex-shrink: 0;
@@ -207,7 +207,7 @@ function renderLink(link: any) {
   .site-nav__sublink {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 0.82rem;
+    font-size: 1rem;
     letter-spacing: 0.02em;
     color: rgba(255,255,255,0.72);
     white-space: nowrap;
@@ -260,11 +260,18 @@ function renderLink(link: any) {
   .site-nav__toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
-    background: none;
+    background: rgba(0, 0, 0, 0.25);
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px 12px;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    z-index: 101;
   }
   .site-nav__toggle span {
     width: 22px;
@@ -278,10 +285,10 @@ function renderLink(link: any) {
     .site-nav__toggle { display: flex; }
     .site-nav__links {
       position: fixed;
-      top: 100%;
+      top: var(--nav-height);
       left: 0;
       right: 0;
-      background: rgba(27, 36, 71, 0.97);
+      background: rgba(27, 36, 71, 0.98);
       flex-direction: column;
       align-items: stretch;
       gap: 0;
@@ -290,6 +297,7 @@ function renderLink(link: any) {
       overflow: hidden;
       overflow-y: auto;
       transition: max-height 0.3s ease;
+      z-index: 99;
     }
     .site-nav__links.is-open { max-height: 80vh; }
     .site-nav__link {

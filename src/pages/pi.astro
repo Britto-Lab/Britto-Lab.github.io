@@ -20,7 +20,7 @@ const d = piEntry.data;
           {d.email && <a href={`mailto:${d.email}`} class="text-link">Email</a>}
           {d.google_scholar && <a href={d.google_scholar} class="text-link" target="_blank">Google Scholar</a>}
           {d.orcid && <a href={d.orcid} class="text-link" target="_blank">ORCID</a>}
-          {d.linkedin && <a href={d.linkedin} class="text-link" target="_blank">{d.linkedin}</a>}
+          {d.linkedin && <a href={d.linkedin} class="text-link" target="_blank">LinkedIn</a>}
         </div>
       </div>
     </div>
@@ -105,7 +105,7 @@ const d = piEntry.data;
     <section class="section section--navy section--tight">
       <div class="container">
         <span class="eyebrow">Scientific Consultant</span>
-        <h2>{d.scientific_consultant_company}</h2>
+        <h2 style="font-size:1.2rem;">{d.scientific_consultant_company}</h2>
         <p style="max-width:60ch;">{d.scientific_consultant_description}</p>
       </div>
     </section>

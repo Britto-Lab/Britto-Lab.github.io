@@ -1,6 +1,6 @@
 ---
 name: "Dr. Britto Sandanaraj"
-designation: "Associate Professor (with Tenure), Department of Chemistry, IISER Pune"
+designation: "Associate Professor, Department of Chemistry, Indian Institute of Science Education and Research (IISER), Pune"
 photo: "/images/team/pi.jpg"
 email: "sandanaraj.britto@iiserpune.ac.in"
 orcid: ""
@@ -13,7 +13,7 @@ education:
   - "1998 – 2000 — M.Sc. (Chemistry), Loyola College – Madras University, India"
   - "1995 – 1998 — B.Sc. (Chemistry), St. Joseph's College – Madras University, India"
 employment:
-  - "March 2022 – Present — Associate Professor with Tenure, Department of Chemistry, IISER Pune, India"
+  - "March 2022 – Present — Associate Professor, Department of Chemistry, IISER Pune, India"
   - "Feb 2014 – March 2022 — Assistant Professor (Tenure Track), Department of Chemistry, IISER Pune, India"
   - "2010 – 2014 — Senior Scientist, RNAi Therapeutics Group, Novartis Pharmaceuticals, Cambridge, USA"
 other_positions:

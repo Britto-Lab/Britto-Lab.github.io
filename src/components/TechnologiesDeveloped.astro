@@ -1,0 +1,242 @@
+---
+const technologies = [
+  {
+    name: "Micelle-Assisted Protein Labeling Technology (MAPLabTech)",
+    highlight: "This invention provides opportunities to make mono-disperse self-assembling semi-synthetic proteins.",
+    images: ["/images/technologies/maplabtech-a.png", "/images/technologies/maplabtech-b.png"],
+    meta: [
+      ["Domain", "Therapeutics & Vaccines"],
+      ["Patent Classification", "Process Patent"],
+      ["Number of Patents", "8"],
+      ["Patent Status", "4 US and 4 Indian Patents Granted"],
+      ["Technology Readiness Level", "4"],
+      ["Industry Partner", "Immunoscript Life Sciences Pvt Ltd"],
+    ],
+  },
+  {
+    name: "Supramolecule-Assisted Protein Labelling Technology (SAPLabTech)",
+    wide: true,
+    highlight: "This technology provides opportunities to make self-assembling artificial proteins in quantitative yield in 100% aqueous medium.",
+    images: ["/images/technologies/saplabtech.png"],
+    meta: [
+      ["Domain", "Vaccines"],
+      ["Patent Classification", "Process Patent"],
+      ["Number of Patents Filed", "2"],
+      ["Patent Status", "Both US and Indian Patents pending"],
+      ["Technology Readiness Level", "4"],
+    ],
+  },
+  {
+    name: "Solubility Tag Assisted Protein Labelling Technology (STAPLabTech)",
+    highlight: "This technology provides opportunities to do homogenous bioconjugation reaction to make self-assembling artificial proteins.",
+    images: ["/images/technologies/staplabtech.png"],
+    meta: [
+      ["Domain", "Diagnostics"],
+      ["Patent Classification", "Process Patent"],
+      ["Number of Patent", "1 (Indian Patent)"],
+      ["Patent Status", "Patent Pending"],
+      ["Technology Readiness Level", "3"],
+    ],
+  },
+  {
+    name: "Development of Self-Assembling Antibody-Drug Conjugates",
+    highlight: "This technology is currently utilized for design of safe and efficacious next generation antibody-drug conjugates for treatment of cancer.",
+    images: ["/images/technologies/sadc.png"],
+    meta: [
+      ["Domain", "Cancer Therapeutics"],
+      ["Patent Classification", "Product Patent"],
+      ["Number of Patents", "2 (1 US Patent and 1 Indian Patent)"],
+      ["Patent Status", "Both US and Indian Patents Pending"],
+      ["Technology Readiness Level", "4"],
+      ["Industry Partners", "Big Pharma (Boston) and nanoADCs (Deep-Tech Startup from IISER-Pune)"],
+    ],
+  },
+  {
+    name: "Development of Artificial Enveloped Virus-Like Particles (eVLPs)",
+    highlight: "This technology has the potential to replace all PEG-lipids currently used in clinically approved nanomedicine formulations.",
+    images: [],
+    meta: [
+      ["Domain", "Therapeutics"],
+      ["Patent Classification", "Product Patent"],
+      ["Number of Patents Filed", "4 (2 US Patents and 2 Indian Patents)"],
+      ["Patents Status", "All 4 patents pending"],
+      ["Technology Readiness Level", "4"],
+    ],
+  },
+  {
+    name: "Activity-Based Reporter Gene Technology",
+    highlight: "This technology offers unprecedented specificity to study drug-target interactions in live cells and live animals.",
+    images: ["/images/technologies/abrgt-fret.png", "/images/technologies/abrgt-fret-screening.png"],
+    meta: [
+      ["Domain", "Drug Discovery & Diagnostics"],
+      ["Number of Patents", "4 (1 US Patent pending, 1 Indian Patent Grant)"],
+      ["Patent Status", "1 US Patent and 2 Indian Patents Granted"],
+      ["Technology Readiness Level", "4"],
+    ],
+  },
+];
+---
+<div class="tech-page">
+  <p class="tech-page__intro">Development of Converging BioMedical Technologies</p>
+
+  <div class="tech-list">
+    {technologies.map((tech, i) => (
+      <article class="tech-item">
+        <div class="tech-item__index">{`0${i + 1}`}</div>
+        <div class="tech-item__body">
+          <h2>{tech.name}</h2>
+
+          <div class:list={["tech-item__content-row", { "tech-item__content-row--noimg": tech.images.length === 0, "tech-item__content-row--wide": Boolean((tech as any).wide) }]}>
+            {tech.images.length > 0 && (
+              <div class="tech-item__images">
+                {tech.images.map(img => <img src={img} alt={tech.name} />)}
+              </div>
+            )}
+            <div class="tech-item__text">
+              <p class="tech-item__highlight"><strong>Highlight:</strong> {tech.highlight}</p>
+              <dl class="tech-item__meta">
+                {tech.meta.map(([label, value]) => (
+                  <div class="tech-item__meta-row">
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="tech-video">
+    <span class="eyebrow">Overview</span>
+    <h2>Converging Biomedical Technologies</h2>
+    <video controls preload="metadata" poster="/video/hero_facilities_poster.jpg">
+      <source src="/video/technologies-overview.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+<style>
+  .tech-page__intro {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-navy);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .tech-list { display: flex; flex-direction: column; gap: 48px; }
+
+  .tech-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .tech-list .tech-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .tech-item__index {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--color-bg-alt);
+    -webkit-text-stroke: 1.5px var(--color-teal);
+    line-height: 1;
+  }
+
+  .tech-item__body h2 {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .tech-item__content-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 44px;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tech-item__content-row--noimg {
+    grid-template-columns: minmax(0, 560px);
+    justify-content: center;
+  }
+  .tech-item__images {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+  }
+  .tech-item__images img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    padding: 14px;
+    border-radius: 4px;
+  }
+  .tech-item__text { min-width: 0; }
+  .tech-item__highlight {
+    font-size: 1.05rem;
+    text-align: center;
+    margin: 0 0 20px;
+  }
+  .tech-item__highlight strong { color: var(--color-teal); }
+
+  .tech-item__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+  }
+  .tech-item__meta-row {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--color-border);
+  }
+  .tech-item__meta-row dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: 3px;
+  }
+  .tech-item__meta-row dd {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .tech-video {
+    margin-top: 60px;
+    padding-top: 48px;
+    border-top: 2px solid var(--color-border);
+  }
+  .tech-video h2 { margin-bottom: 20px; }
+  .tech-video video {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 6px;
+    background: #000;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .tech-item { grid-template-columns: 1fr; }
+    .tech-item__meta { grid-template-columns: 1fr; }
+  }
+  .tech-item__content-row--wide { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); }
+  @media (max-width: 860px) {
+    .tech-item__content-row { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  }
+</style>

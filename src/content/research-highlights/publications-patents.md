@@ -5,75 +5,79 @@ order: 1
 
 *From Independent Career*
 
-60\. Khyade, A. R. A. Sandanaraj, B. S.* Lipid Nanoparticles-Protein-Drug Conjugates Hybrid Nanomedicine for Targeted Drug Delivery — Manuscript Under Preparation
+64\. Khyade, A. R. A. Sandanaraj, B. S.* Lipid Nanoparticles-Protein-Drug Conjugates Hybrid Nanomedicine for Targeted Drug Delivery — Manuscript Under Preparation
 
-59\. Khyade, A. R. A. Sandanaraj, B. S.* Directed Chemical Evolution of Biomimetic Extracellular Vesicles Nanomedicines — Manuscript Under Preparation
+63\. Khyade, A. R. A. Sandanaraj, B. S.* Directed Chemical Evolution of Biomimetic Extracellular Vesicles Nanomedicines — Manuscript Under Preparation
 
-58\. Khyade, A. R., Sharma, A. Sandanaraj, B. S.* Extreme Hydrophobicity of Cytotoxic Drug Enables Design of Antibody-Drug Conjugates Nanotherapeutics — Submitted
+62\. Hati, K.C.; Sandanaraj, B.S. Total Synthesis of Self-Assembling Semi-Synthetic Proteins Utilizing a Dendritic Solubility Tag — J.Org.Chem (Revision)
 
-[57\. Khyade, A. R. Sandanaraj, B. S* Directed Chemical Evolution of Self-Assembling Artificial Proteins Utilizing a Supramolecular System Bioconjugate Chem 2026, 6, 1185](https://pubs.acs.org/doi/10.1021/acs.bioconjchem.6c00090)
+61\. Khyade, A. R., Sharma, A. Sandanaraj, B. S.* Extreme Hydrophobicity of Cytotoxic Drug Enables Design of Antibody-Drug Conjugates Nanotherapeutics — J.Med.Chem (Revision)
 
-[56\. Bathla, P., Mujawar, A., De, A, Sandanaraj, B. S* Development of Non-invasive Activity-Based Protein Profiling-Bioluminescence Resonance Energy Transfer Platform Technology Enables Target Engagement Studies with Absolute Specificity in Living Systems. ACS Pharmacology and Translational Science 2024, 7, 375-383](https://pubs.acs.org/doi/10.1021/acsptsci.3c00231)
+[60\. Khyade, A. R. Sandanaraj, B. S* Directed Chemical Evolution of Self-Assembling Artificial Proteins Utilizing a Supramolecular System Bioconjugate Chem 2026, 6, 1185](https://pubs.acs.org/doi/10.1021/acs.bioconjchem.6c00090)
 
-[55\. Reddy, M.M., Bhandari, P. B., Hati K. C., Sandanaraj, B. S. * Rational Design of Self-Assembling Artificial Proteins Using a Micelle-Assisted Protein Labeling Technology (MAPLabTech): Testing the Scope ChemBioChem, 2022, 23, e2021100607](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.202100607)
+[59\. Bathla, P., Mujawar, A., De, A, Sandanaraj, B. S* Development of Non-invasive Activity-Based Protein Profiling-Bioluminescence Resonance Energy Transfer Platform Technology Enables Target Engagement Studies with Absolute Specificity in Living Systems. ACS Pharmacology and Translational Science 2024, 7, 375-383](https://pubs.acs.org/doi/10.1021/acsptsci.3c00231)
 
-[54\. Reddy, M. M, Bathla, P., Sandanaraj, B. S.* A Universal Chemical Method for Rational Design of Protein-based Nanoreactors ChemBioChem 2021, 22, 3042-3048](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cbic.202100315)
+[58\. Reddy, M.M., Bhandari, P. B., Hati K. C., Sandanaraj, B. S. * Rational Design of Self-Assembling Artificial Proteins Using a Micelle-Assisted Protein Labeling Technology (MAPLabTech): Testing the Scope ChemBioChem, 2022, 23, e2021100607](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.202100607)
 
-[53\. Bhandari, P. B., Sandanaraj, B. S*. Ration Design of Programmable Monodisperse Semi-Synthetic Protein Nanomaterials Containing Engineered Disulfide Functionality ChemBioChem 2021, 22, 2966-2972](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cbic.202100288)
+[57\. Reddy, M. M, Bathla, P., Sandanaraj, B. S.* A Universal Chemical Method for Rational Design of Protein-based Nanoreactors ChemBioChem 2021, 22, 3042-3048](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cbic.202100315)
 
-[52\. Bhandari, P. B. Reddy, M. M., Rao, J. K. Sandanaraj, B. S.* Expedient Chemical Synthesis of Self-Assembling Semi-Synthetic Proteins J. Org. Chem. 2021, 86, 8576-8589](https://pubs.acs.org/doi/10.1021/acs.joc.1c00195)
+[56\. Bhandari, P. B., Sandanaraj, B. S*. Ration Design of Programmable Monodisperse Semi-Synthetic Protein Nanomaterials Containing Engineered Disulfide Functionality ChemBioChem 2021, 22, 2966-2972](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cbic.202100288)
 
-[51\. Bhandari, P. B., Sandanaraj, B. S*. Programmed and Sequential Disassembly of Multi-responsive Supramolecular Protein Nanoassemblies: A Detailed Mechanistic Investigation ChemBioChem 2021, 22, 876-887](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.202000581)
+[55\. Bhandari, P. B. Reddy, M. M., Rao, J. K. Sandanaraj, B. S.* Expedient Chemical Synthesis of Self-Assembling Semi-Synthetic Proteins J. Org. Chem. 2021, 86, 8576-8589](https://pubs.acs.org/doi/10.1021/acs.joc.1c00195)
 
-[50\. Sandanaraj, B. S*, Bhandari, P. J., Reddy, M. M., Lohote, A. B., Sahoo, B. Design, Synthesis and Self-Assembly Studies of Suite of Monodisperse Facially Amphiphilic Protein-Dendron Conjugates ChemBioChem 2019, 21, 408-416](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.201900341)
+[54\. Bhandari, P. B., Sandanaraj, B. S*. Programmed and Sequential Disassembly of Multi-responsive Supramolecular Protein Nanoassemblies: A Detailed Mechanistic Investigation ChemBioChem 2021, 22, 876-887](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.202000581)
 
-[49\. Bathla. P., Sandanaraj, B. S* Development of Activity-based Reporter Gene Technology for an Exquisite Imaging of Protease Function in Single Live Cell ACS Chem Biol 2019, 14, 2276-2285](https://pubs.acs.org/doi/10.1021/acschembio.9b00614)
+[53\. Sandanaraj, B. S*, Bhandari, P. J., Reddy, M. M., Lohote, A. B., Sahoo, B. Design, Synthesis and Self-Assembly Studies of Suite of Monodisperse Facially Amphiphilic Protein-Dendron Conjugates ChemBioChem 2019, 21, 408-416](https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cbic.201900341)
 
-[48\. Sandanaraj, B. S.* Reddy, M. M., Jagan, K., Bhandari, P. J. Rational Design of Semi-Synthetic Protein Complexes with the Defined Oligomeric State. Chem. Select. 2019, 4, 6397-6402](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/slct.201901317)
+[52\. Bathla. P., Sandanaraj, B. S* Development of Activity-based Reporter Gene Technology for an Exquisite Imaging of Protease Function in Single Live Cell ACS Chem Biol 2019, 14, 2276-2285](https://pubs.acs.org/doi/10.1021/acschembio.9b00614)
 
-[47\. Sandanaraj, B. S.*, Reddy, M. M., Bhandari, P.; Sugam, K., Aswal, V. K. Rational Design of Supramolecular Dynamic Protein Assemblies Using a Micelle-Assisted Activity-based Protein Labelling Technology. Chem. Eur. J. 2018, 24, 16085-16096](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/chem.201802824)
+[51\. Sandanaraj, B. S.* Reddy, M. M., Jagan, K., Bhandari, P. J. Rational Design of Semi-Synthetic Protein Complexes with the Defined Oligomeric State. Chem. Select. 2019, 4, 6397-6402](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/slct.201901317)
 
-46\. Sandanaraj, B. S., Khyade, A. R. Lipids Nanoparticles Decorated with Protein-Drug Conjugates, Methods of Preparation and Uses Thereof US Patent 19/704752
+[50\. Sandanaraj, B. S.*, Reddy, M. M., Bhandari, P.; Sugam, K., Aswal, V. K. Rational Design of Supramolecular Dynamic Protein Assemblies Using a Micelle-Assisted Activity-based Protein Labelling Technology. Chem. Eur. J. 2018, 24, 16085-16096](https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/chem.201802824)
 
-45\. Sandanaraj, B. S., Khyade, A. R. Membrane Embedded Proteo-lipid Naonoparticles: Method of Preparation and Uses Thereof US Patent 19/637589
+49\. Sandanaraj, B. S., Khyade, A. R. Lipids Nanoparticles Decorated with Protein-Drug Conjugates, Methods of Preparation and Uses Thereof US Patent 19/704752
 
-44\. Sandanaraj, B. S, Khyade, A. T. Synthesis of Self-Assembling Protein-Drug Conjugates and Uses Thereof US Patent 19/468986
+48\. Sandanaraj, B. S., Khyade, A. R. Membrane Embedded Proteo-lipid Naonoparticles: Method of Preparation and Uses Thereof US Patent 19/637589
 
-[43\. Sandanaraj, B. S, Khyade, A. T Synthesis of Self-Assembling Artificial Proteins Utilizing a Host-Guest System and Uses Therof US Patent 2025/0250302A1 (Published Aug 2025)](https://patents.google.com/patent/US20250250302A1/en?inventor=britto+sandanaraj)
+47\. Sandanaraj, B. S, Khyade, A. T. Synthesis of Self-Assembling Protein-Drug Conjugates and Uses Thereof US Patent 19/468986
 
-[42\. Sandanaraj, B. S., Bathla, P., De, A., Mujawar, A. Assay for Determining Target Engagement in Real-Time in Living Systems US Patent 2022/0298541 A1 (published Sep 2022)](https://patents.google.com/patent/US20220298541A1/en?inventor=britto+sandanaraj)
+[46\. Sandanaraj, B. S, Khyade, A. T Synthesis of Self-Assembling Artificial Proteins Utilizing a Host-Guest System and Uses Therof US Patent 2025/0250302A1 (Published Aug 2025)](https://patents.google.com/patent/US20250250302A1/en?inventor=britto+sandanaraj)
 
-[41\. Sandanaraj, B. S., Bathla, P. Process for Determining Enzyme Activity in a Cell by Activity-Based Reporter Gene Technology (ABRGT) US Patent 11834698 (issued Dec 2023)](https://patents.google.com/patent/US11834698B2/en?inventor=britto+sandanaraj)
+[45\. Sandanaraj, B. S., Bathla, P., De, A., Mujawar, A. Assay for Determining Target Engagement in Real-Time in Living Systems US Patent 2022/0298541 A1 (published Sep 2022)](https://patents.google.com/patent/US20220298541A1/en?inventor=britto+sandanaraj)
 
-[40\. Sandanaraj, B. S., Reddy, M. M. Chemical Method for Synthesis of Protein Amphiphiles US Patent 11945838 (issued April 2024)](https://patents.google.com/patent/US11945838B2/en?inventor=britto+sandanaraj)
+[44\. Sandanaraj, B. S., Bathla, P. Process for Determining Enzyme Activity in a Cell by Activity-Based Reporter Gene Technology (ABRGT) US Patent 11834698 (issued Dec 2023)](https://patents.google.com/patent/US11834698B2/en?inventor=britto+sandanaraj)
 
-[39\. Sandanaraj, B. S., Reddy, M. M., Bhandari. P. J. Generation-Dependent Supramolecular Assemblies of Protein-Dendron Conjugates. US Patent 10188136 (issued Nov 2023)](https://patents.google.com/patent/US11807884B2/en?inventor=britto+sandanaraj)
+[43\. Sandanaraj, B. S., Reddy, M. M. Chemical Method for Synthesis of Protein Amphiphiles US Patent 11945838 (issued April 2024)](https://patents.google.com/patent/US11945838B2/en?inventor=britto+sandanaraj)
 
-[40\. Sandanaraj, B. S.; Bhandari, P. J., Reddy, M. M. Supramolecular Protein Assemblies with Advanced Functions and Synthesis Thereof. US Patent 11173212 (issued Nov 2021)](https://patents.google.com/patent/US20190134212A1/en?inventor=britto+sandanaraj)
+[42\. Sandanaraj, B. S., Reddy, M. M., Bhandari. P. J. Generation-Dependent Supramolecular Assemblies of Protein-Dendron Conjugates. US Patent 10188136 (issued Nov 2023)](https://patents.google.com/patent/US11807884B2/en?inventor=britto+sandanaraj)
 
-[39\. Sandanaraj, B. S., Reddy, M. M., Bhandari, P. J.; Rao, J. K. Hydrophobin Mimics: Process for Preparation Thereof US Patent 10188136 (issued Jan 2019)](https://patents.google.com/patent/US20170231260A1/en?inventor=britto+sandanaraj)
+[41\. Sandanaraj, B. S.; Bhandari, P. J., Reddy, M. M. Supramolecular Protein Assemblies with Advanced Functions and Synthesis Thereof. US Patent 11173212 (issued Nov 2021)](https://patents.google.com/patent/US20190134212A1/en?inventor=britto+sandanaraj)
 
-38\. Sandanaraj, B. S., Kshitish, H. C. Khyade, A. R. Synthetic and Self-Assembling Amphiphilic Proteins, Its Process of Preparation and Application Thereof Indian Patent 202621027474
+[40\. Sandanaraj, B. S., Reddy, M. M., Bhandari, P. J.; Rao, J. K. Hydrophobin Mimics: Process for Preparation Thereof US Patent 10188136 (issued Jan 2019)](https://patents.google.com/patent/US20170231260A1/en?inventor=britto+sandanaraj)
 
-37\. Sandanaraj, B. S., Khyade, A. R. Lipids Nanoparticles Decorated with Protein-Drug Conjugates, Methods of Preparation and Uses Thereof Indian Patent 202621045715
+39\. Sandanaraj, B. S., Kshitish, H. C. Khyade, A. R. Synthetic and Self-Assembling Amphiphilic Proteins, Its Process of Preparation and Application Thereof Indian Patent 202621027474
 
-36\. Sandanaraj, B. S., Khyade, A. R. Membrane Embedded Proteo-lipid Naonoparticles: Method of Preparation and Uses Thereof. Indian Patent 202521040183
+38\. Sandanaraj, B. S., Khyade, A. R. Lipids Nanoparticles Decorated with Protein-Drug Conjugates, Methods of Preparation and Uses Thereof Indian Patent 202621045715
 
-35\. Sandanaraj, B. S, Khyade, A. T. Synthesis of Self-Assembling Protein-Drug Conjugates and uses thereof Indian Patent 202521008852
+37\. Sandanaraj, B. S., Khyade, A. R. Membrane Embedded Proteo-lipid Naonoparticles: Method of Preparation and Uses Thereof. Indian Patent 202521040183
 
-34\. Sandanaraj, B. S, Khyade, A. T Synthesis of Self-Assembling Artificial Proteins Utilizing a Host-Guest System and Uses Thereof Indian Patent 587439 (issued April 2026)
+36\. Sandanaraj, B. S, Khyade, A. T. Synthesis of Self-Assembling Protein-Drug Conjugates and uses thereof Indian Patent 202521008852
 
-33\. Sandanaraj, B. S., Bathla, P. Process for Determining Enzyme Activity in a Cell by Activity-based Reporter Gene Technology (ABRGT) Indian Patent 515916 (issued Feb 2024)
+35\. Sandanaraj, B. S, Khyade, A. T Synthesis of Self-Assembling Artificial Proteins Utilizing a Host-Guest System and Uses Thereof Indian Patent 587439 (issued April 2026)
 
-32\. Sandanaraj, B. S., Bathla, P., De, A., Mujawar, A. Assay for Determining Target Engagement in Real-Time in Living Systems Indian Patent 421037 (issued Sep 2023)
+34\. Sandanaraj, B. S., Bathla, P. Process for Determining Enzyme Activity in a Cell by Activity-based Reporter Gene Technology (ABRGT) Indian Patent 515916 (issued Feb 2024)
 
-31\. Sandanaraj, B. S., Reddy, M. M. Chemical Method for Synthesis of Protein Amphiphiles Indian Patent 493837 (issued Jan 2024)
+33\. Sandanaraj, B. S., Bathla, P., De, A., Mujawar, A. Assay for Determining Target Engagement in Real-Time in Living Systems Indian Patent 421037 (issued Sep 2023)
 
-30\. Sandanaraj, B. S.; Bhandari, P. J., Reddy, M. M. Supramolecular Protein Assemblies with Advanced Functions and Synthesis thereof. Indian Patent 490760 (issued Dec 2023)
+32\. Sandanaraj, B. S., Reddy, M. M. Chemical Method for Synthesis of Protein Amphiphiles Indian Patent 493837 (issued Jan 2024)
 
-29\. Sandanaraj, B. S., Reddy, M. M., Bhandari. P. J. Generation-dependent Supramolecular Assemblies of Protein-Dendron Conjugates. Indian Patent 4666848 (issued Nov 2023)
+31\. Sandanaraj, B. S.; Bhandari, P. J., Reddy, M. M. Supramolecular Protein Assemblies with Advanced Functions and Synthesis thereof. Indian Patent 490760 (issued Dec 2023)
 
-28\. Sandanaraj, B. S., Reddy, M. M., Bhandari, P. J.; Rao, J. K. Hydrophobin Mimics: Process for Preparation thereof Indian Patent 337949 (issued June 2020)
+30\. Sandanaraj, B. S., Reddy, M. M., Bhandari. P. J. Generation-dependent Supramolecular Assemblies of Protein-Dendron Conjugates. Indian Patent 4666848 (issued Nov 2023)
+
+29\. Sandanaraj, B. S., Reddy, M. M., Bhandari, P. J.; Rao, J. K. Hydrophobin Mimics: Process for Preparation thereof Indian Patent 337949 (issued June 2020)
+
+[28\. Hati, K.C.; Sandanaraj, B.S. Total Synthesis of Self-Assembling Semi-Synthetic Proteins Utilizing a Dendritic Solubility Tag bioRxiv July 27, 2026](https://doi.org/10.64898/2026.07.24.740575)
 
 [27\. Khyade, A. R., Sharma, A. Sandanaraj, B. S.* Extreme Hydrophobicity of Cytotoxic Drug Enables Design of Antibody-Drug Conjugates Nanotherapeutics bioRxiv 2026.04.29.721383](https://doi.org/10.64898/2026.04.29.721383)
 

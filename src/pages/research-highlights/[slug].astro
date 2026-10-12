@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
+import TechnologiesDeveloped from '../../components/TechnologiesDeveloped.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('researchHighlights');
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const isTechPage = entry.id === 'translational-research';
 ---
 <Base title={entry.data.title}>
   <section class="section">
@@ -19,8 +21,8 @@ const { Content } = await render(entry);
       <a href="/research" class="text-link back-link">← Back to Research</a>
       <span class="eyebrow">Research</span>
       <h1>{entry.data.title}</h1>
-      <div class="highlight-content">
-        <Content />
+      <div class:list={["highlight-content", { "highlight-content--wide": isTechPage }]}>
+        {isTechPage ? <TechnologiesDeveloped /> : <Content />}
       </div>
     </div>
   </section>
@@ -29,6 +31,7 @@ const { Content } = await render(entry);
 <style>
   .back-link { display: inline-block; margin-bottom: 24px; }
   .highlight-content { max-width: 78ch; margin-top: 20px; }
+  .highlight-content--wide { max-width: none; }
   .highlight-content :global(ol) { padding-left: 1.5em; }
   .highlight-content :global(li) {
     margin-bottom: 28px;

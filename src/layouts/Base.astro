@@ -9,7 +9,64 @@ export interface Props {
   transparentNav?: boolean;
 }
 
-const { title, description = 'Britto Lab, Department of Biology, IISER Pune — chemical biology, translational research, and technology development.', transparentNav = false } = Astro.props;
+const { title, description, transparentNav = false } = Astro.props;
+
+const site = Astro.site ?? new URL('https://britto-lab.github.io');
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const canonical = new URL(path, site).href;
+const isHome = path === '/';
+
+const pageDescriptions: Record<string, string> = {
+  'Home': 'Britto Lab at the Department of Chemistry, IISER Pune, led by Dr. Britto Sandanaraj. We engineer dynamic protein nanomaterials for next-generation therapeutics, diagnostics, and vaccines.',
+  'Principal Investigator': 'Dr. Britto Sandanaraj, Associate Professor at the Department of Chemistry, IISER Pune: education, employment, awards, invited talks and service.',
+  'Research': 'Research at Britto Lab, IISER Pune: specific imaging of active enzymes in living systems (AbRGT) and chemically designed self-assembling protein nanomaterials (MAPLabTech) for therapeutics, diagnostics and vaccines.',
+  'Team': 'Meet the Britto Lab team at IISER Pune: PhD students, project assistants, semester project interns and alumni.',
+  'Teaching': 'Courses taught by Dr. Britto Sandanaraj at IISER Pune, including Medicinal Chemistry, Advanced Organic Lab, Self Assembly Chemistry and Chemical Biology.',
+  'Funding & Collaboration': 'Research funding and academic and industrial collaborations of Britto Lab, IISER Pune.',
+  'Gallery': 'Photos from Britto Lab, IISER Pune, and media coverage of the lab\'s research.',
+  'News': 'News and updates from Britto Lab, IISER Pune.',
+  'Join Us': 'Join Britto Lab at IISER Pune: how to apply for PhD, postdoctoral and project positions in protein nanomaterials and chemical biology.',
+  'Technologies Developed': 'Platform technologies from Britto Lab, IISER Pune: MAPLabTech, SAPLabTech, STAPLabTech, self-assembling antibody-drug conjugates, eVLPs and activity-based reporter gene technology.',
+  'Industry Partnership': 'Academia-industry partnerships of Britto Lab, IISER Pune, in oncology and vaccines with pharma and biotech companies.',
+  'Academic Entrepreneurship': 'Academic entrepreneurship at Britto Lab, IISER Pune, including the deep-tech startup nanoADCs.',
+  'Publications/Patents': 'Publications, preprints and patents from Britto Lab, IISER Pune.',
+};
+
+const metaDescription = description ?? pageDescriptions[title] ?? pageDescriptions['Home'];
+const fullTitle = isHome
+  ? 'Britto Lab | IISER Pune – Protein Nanomaterials, Chemical Biology & Nanomedicine'
+  : `${title} · Britto Lab`;
+const ogImage = new URL('/images/logos/lab-logo.png', site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ResearchOrganization',
+  name: 'Britto Lab',
+  url: new URL('/', site).href,
+  logo: ogImage,
+  description: pageDescriptions['Home'],
+  email: 'sandanaraj.britto@iiserpune.ac.in',
+  parentOrganization: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Indian Institute of Science Education and Research (IISER) Pune',
+    url: 'https://www.iiserpune.ac.in',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Dr. Homi Bhabha Road, Pashan',
+    addressLocality: 'Pune',
+    addressRegion: 'Maharashtra',
+    postalCode: '411008',
+    addressCountry: 'IN',
+  },
+  employee: {
+    '@type': 'Person',
+    name: 'Dr. Britto Sandanaraj',
+    jobTitle: 'Associate Professor',
+    url: new URL('/pi/', site).href,
+    sameAs: ['https://www.linkedin.com/in/britto2k/'],
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -20,8 +77,19 @@ const { title, description = 'Britto Lab, Department of Biology, IISER Pune — 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
-    <meta name="description" content={description} />
-    <title>{title} · Britto Lab</title>
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Britto Lab, IISER Pune" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <Nav transparent={transparentNav} />

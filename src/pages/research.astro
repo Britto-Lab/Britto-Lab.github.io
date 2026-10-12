@@ -12,7 +12,7 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
     <div class="decor-shapes"></div>
     <div class="container" style="position:relative; z-index:1;">
       <span class="eyebrow">Research</span>
-      <h1>Deciphering the Function of "Active Proteins" in Living Systems in Real Time</h1>
+      <h1 style="text-align:center; max-width:60ch; margin-left:auto; margin-right:auto; font-size:clamp(1.55rem, 2.85vw, 2.15rem);">Deciphering the Function of "Active Proteins" in Living Systems in Real Time</h1>
       <div class="research-intro">
         <p>
           Even after two decades of the complete human genome draft, we still do not know the
@@ -118,9 +118,17 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
     </div>
   </section>
 
-  <section class="section theme-section">
+  <section class="section" style="padding-bottom:0;">
     <div class="container">
-      <span class="eyebrow">Research Themes</span>
+      <div class="page-tabs" role="tablist">
+        <button class="page-tab is-active" data-tab-target="themes" type="button">Research Programs</button>
+        <button class="page-tab" data-tab-target="impact" type="button">Translational Impact</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section theme-section page-panel" data-panel="themes">
+    <div class="container">
       <div class="theme-list">
         {themes.map((theme, i) => (
           <button class:list={["theme-card", { "theme-card--reverse": i % 2 === 1 }]} data-theme-index={i} type="button">
@@ -138,10 +146,10 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
     </div>
   </section>
 
-  <section class="section section--tight section--alt">
+  <section class="section section--tight section--alt page-panel" data-panel="impact" style="display:none;">
     <div class="container">
       <div class="pipeline-rule"><span></span></div>
-      <span class="eyebrow">Explore Further</span>
+      <span class="eyebrow">Translational Impact</span>
       <div class="highlight-links">
         {highlights.map(h => (
           <a href={`/research-highlights/${h.id}`} class="highlight-link">
@@ -223,9 +231,29 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
   .theme-section { position: relative; }
 
   .theme-list {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .theme-list .theme-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  .theme-list .theme-card:nth-child(1),
+  .theme-list .theme-card:nth-child(2) {
+    grid-template-columns: 1fr !important;
+    min-height: auto;
+  }
+  .theme-list .theme-card:nth-child(1) .theme-card__media,
+  .theme-list .theme-card:nth-child(2) .theme-card__media {
+    aspect-ratio: 16/9;
+  }
+  .theme-list .theme-card:nth-child(1) .theme-card__body,
+  .theme-list .theme-card:nth-child(2) .theme-card__body {
+    padding: 32px 36px;
+  }
+  .theme-list .theme-card:nth-child(3) .theme-card__media img {
+    object-fit: contain;
+    background: var(--color-white);
   }
 
   .theme-card {
@@ -295,6 +323,7 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
   .theme-card:hover .theme-card__cta { color: var(--color-teal); }
 
   @media (max-width: 900px) {
+    .theme-list { grid-template-columns: 1fr; }
     .theme-card, .theme-card--reverse { grid-template-columns: 1fr; min-height: 0; }
     .theme-card--reverse .theme-card__media { order: 0; }
     .theme-card--reverse .theme-card__body { order: 0; }
@@ -381,6 +410,18 @@ const highlights = (await getCollection('researchHighlights')).sort((a, b) => a.
 </style>
 
 <script>
+  const pageTabs = document.querySelectorAll('.page-tab');
+  const pagePanels = document.querySelectorAll('.page-panel');
+  pageTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab-target');
+      pageTabs.forEach(t => t.classList.toggle('is-active', t === tab));
+      pagePanels.forEach(p => {
+        (p as HTMLElement).style.display = p.getAttribute('data-panel') === target ? '' : 'none';
+      });
+    });
+  });
+
   const dialog = document.getElementById('theme-dialog');
   const body = document.getElementById('theme-dialog-body');
   const cards = document.querySelectorAll('.theme-card');
